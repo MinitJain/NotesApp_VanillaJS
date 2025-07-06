@@ -9,7 +9,20 @@ addButton.addEventListener("click", (event) => {
 
 const handleaddNotes = () => {
   const note = document.createElement("p");
-  note.textContent = input.value;
-  notes.appendChild(note);
-  input.value = "";
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "❌";
+
+  if (input.value.trim() === "") {
+    alert("Please add a note");
+  } else {
+    const noteText = input.value;
+    note.textContent = noteText;
+    note.appendChild(deleteButton);
+    notes.appendChild(note);
+    input.value = "";
+
+    deleteButton.addEventListener("click", function () {
+      notes.removeChild(note);
+    });
+  }
 };
